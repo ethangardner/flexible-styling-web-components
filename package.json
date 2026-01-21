@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "format": "npx @biomejs/biome format --write",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.11",
     "vite": "^7.2.4"
   }
 }
