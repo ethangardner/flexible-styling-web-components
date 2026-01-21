@@ -1,0 +1,47 @@
+:root {
+  color-scheme: light dark;
+
+  /**
+   * Theme tokens are used to define the visual style of the application.
+   * They are derived from foundational system tokens and provide a consistent
+   * look and feel across all components and pages. These are aliases for
+   * the CSS custom properties defined in system-tokens.css that are easier to
+   * reference in your application's CSS.
+   */
+  --theme-font-family-sans: var(--system-font-family-humanist);
+  --theme-font-size-md: var(--system-size-20);
+  --theme-font-size-mdlg: var(--system-size-28);
+  --theme-spacing-md: var(--system-size-20);
+  --theme-spacing-mdlg: var(--system-size-24);
+  --theme-spacing-lg: var(--system-size-32);
+
+  --theme-body-background: var(--system-color-cool-210);
+  --theme-body-color: var(--system-color-cool-10);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --theme-body-background: var(--system-color-cool-10);
+    --theme-body-color: var(--system-color-cool-210);
+  }
+}
+
+body {
+  background: var(--theme-body-background);
+  color: var(--theme-body-color);
+  font-family: var(--theme-font-family-sans);
+  font-size: var(--theme-font-size-md);
+  margin: var(--theme-spacing-lg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p {
+  margin-block-start: 0;
+}
