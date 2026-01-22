@@ -1,3 +1,13 @@
+/**
+ * A step indicator component for displaying progress through a series of steps.
+ *
+ * @tag step-indicator
+ * @slot - The steps to display.
+ * @attribute {number} step - The current step number.
+ * @csspart container - The container element.
+ * @csspart steps - The list of steps.
+ */
+
 class StepIndicator extends HTMLElement {
 	static observedAttributes = ["step"];
 
@@ -60,7 +70,6 @@ class StepIndicator extends HTMLElement {
 				<ol part="steps">
 					<slot></slot>
 				</ol>
-				<slot name="text"></slot>
 			</div>
 		`;
 	}
