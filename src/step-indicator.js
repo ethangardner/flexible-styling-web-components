@@ -3,6 +3,7 @@ class StepIndicator extends HTMLElement {
 
 	constructor() {
 		super();
+		this.handleSlotChange = this.handleSlotChange.bind(this);
 	}
 
 	connectedCallback() {
@@ -10,9 +11,7 @@ class StepIndicator extends HTMLElement {
 		this.render(shadowRoot);
 
 		const slot = shadowRoot.querySelector("slot:not([name])");
-		slot.addEventListener("slotchange", () => {
-			this.updateStepClasses();
-		});
+		slot.addEventListener("slotchange", this.handleSlotChange);
 
 		this.updateStepClasses();
 	}
@@ -22,16 +21,16 @@ class StepIndicator extends HTMLElement {
 			<style>
 				:host {
 					display: block;
-					--_border-color-todo: var(--step-indicator-color-todo, #4d4d4d);
-					--_border-color-active: var(--step-indicator-color-active, #16a0a2);
-					--_border-color-completed: var(--step-indicator-color-completed, #06a10f);
+					--_border-color-todo: var(--step-indicator-color-todo, hsl(0,0%,44%));
+					--_border-color-active: var(--step-indicator-color-active, hsl(0 0 22%));
+					--_border-color-completed: var(--step-indicator-color-completed, hsl(0 0 0));
 				}
 
 				@media (prefers-color-scheme: dark) {
 					:host {
-						--_border-color-todo: var(--step-indicator-color-todo, #ccc);
-						--_border-color-active: var(--step-indicator-color-active, #4cadb0);
-						--_border-color-completed: var(--step-indicator-color-completed, #4caf50);
+						--_border-color-todo: var(--step-indicator-color-todo, hsl(0,0%,100%));
+						--_border-color-active: var(--step-indicator-color-active, hsl(0,0%,75%));
+						--_border-color-completed: var(--step-indicator-color-completed, hsl(0,0%,50%));
 					}
 				}
 
@@ -66,11 +65,16 @@ class StepIndicator extends HTMLElement {
 		`;
 	}
 
-	disconnectedCallback() {}
+	handleSlotChange() {
+		this.updateStepClasses();
+	}
 
-	connectedMoveCallback() {}
-
-	adoptedCallback() {}
+	disconnectedCallback() {
+		const slot = this.shadowRoot?.querySelector("slot:not([name])");
+		if (slot) {
+			slot.removeEventListener("slotchange", this.handleSlotChange);
+		}
+	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === "step") {
@@ -99,12 +103,14 @@ class StepIndicator extends HTMLElement {
 			if (stepNumber === step) {
 				element.classList.add("active");
 				element.setAttribute("aria-current", "true");
-			}
-
-			if (stepNumber < step) {
+			} else if (stepNumber < step) {
+				element.classList.remove("active");
+				element.removeAttribute("aria-current");
 				element.classList.add("completed");
 				element.setAttribute("aria-label", `${originalLabel} (completed)`);
 			} else {
+				element.classList.remove("active");
+				element.removeAttribute("aria-current")
 				element.classList.remove("completed");
 				element.removeAttribute("aria-label");
 			}
