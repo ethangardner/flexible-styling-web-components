@@ -7,13 +7,24 @@ class StepIndicator extends HTMLElement {
 
 	connectedCallback() {
 		const shadowRoot = this.attachShadow({ mode: "open" });
+		this.render(shadowRoot);
+
+		const slot = shadowRoot.querySelector("slot:not([name])");
+		slot.addEventListener("slotchange", () => {
+			this.updateStepClasses();
+		});
+
+		this.updateStepClasses();
+	}
+
+	render(shadowRoot) {
 		shadowRoot.innerHTML = `
 			<style>
 				:host {
 					display: block;
-					--_border-color-todo: var(--step-indicator-color-todo, #333333);
-					--_border-color-active: var(--step-indicator-color-active, #163233);
-					--_border-color-completed: var(--step-indicator-color-completed, #163317);
+					--_border-color-todo: var(--step-indicator-color-todo, #4d4d4d);
+					--_border-color-active: var(--step-indicator-color-active, #16a0a2);
+					--_border-color-completed: var(--step-indicator-color-completed, #06a10f);
 				}
 
 				@media (prefers-color-scheme: dark) {
@@ -46,22 +57,13 @@ class StepIndicator extends HTMLElement {
 					border-block-start-color: var(--_border-color-completed);
 				}
 			</style>
-			<div class="container">
-				<ol>
+			<div part="container">
+				<ol part="steps">
 					<slot></slot>
 				</ol>
 				<slot name="text"></slot>
 			</div>
 		`;
-
-		// Listen for slot changes (handles dynamically added elements)
-		const slot = shadowRoot.querySelector("slot:not([name])");
-		slot.addEventListener("slotchange", () => {
-			this.updateStepClasses();
-		});
-
-		// Initial update
-		this.updateStepClasses();
 	}
 
 	disconnectedCallback() {}
