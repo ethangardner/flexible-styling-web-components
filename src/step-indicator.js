@@ -7,7 +7,6 @@
  * @csspart container - The container element.
  * @csspart steps - The list of steps.
  */
-
 class StepIndicator extends HTMLElement {
 	static observedAttributes = ["step"];
 
@@ -31,16 +30,19 @@ class StepIndicator extends HTMLElement {
 			<style>
 				:host {
 					display: block;
-					--_border-color-todo: var(--step-indicator-color-todo, hsl(0,0%,44%));
+					--_border-color-todo: var(--step-indicator-color-todo, hsl(0 0 44%));
 					--_border-color-active: var(--step-indicator-color-active, hsl(0 0 22%));
 					--_border-color-completed: var(--step-indicator-color-completed, hsl(0 0 0));
+					--_border-width: var(--step-indicator-item-border-width, 5px);
+					--_gap: var(--step-indicator-gap, 0.5rem);
+					--_padding-block: var(--step-indicator-item-padding-block, 1rem);
 				}
 
 				@media (prefers-color-scheme: dark) {
 					:host {
-						--_border-color-todo: var(--step-indicator-color-todo, hsl(0,0%,100%));
-						--_border-color-active: var(--step-indicator-color-active, hsl(0,0%,75%));
-						--_border-color-completed: var(--step-indicator-color-completed, hsl(0,0%,50%));
+						--_border-color-todo: var(--step-indicator-color-todo, hsl(0 0 100%));
+						--_border-color-active: var(--step-indicator-color-active, hsl(0 0 75%));
+						--_border-color-completed: var(--step-indicator-color-completed, hsl(0 0 50%));
 					}
 				}
 
@@ -49,13 +51,13 @@ class StepIndicator extends HTMLElement {
 					list-style: none;
 					margin-inline-start: 0;
 					padding-inline-start: 0;
-					gap: 0.5rem;
+					gap: var(--_gap);
 				}
 
 				::slotted(li) {
-					border-block-start: 5px solid var(--_border-color-todo);
+					border-block-start: var(--_border-width) solid var(--_border-color-todo);
 					flex: 1 0 0;
-					padding: 1rem 0;
+					padding-block: var(--_padding-block);
 				}
 
 				::slotted(li.active) {
@@ -119,7 +121,7 @@ class StepIndicator extends HTMLElement {
 				element.setAttribute("aria-label", `${originalLabel} (completed)`);
 			} else {
 				element.classList.remove("active");
-				element.removeAttribute("aria-current")
+				element.removeAttribute("aria-current");
 				element.classList.remove("completed");
 				element.removeAttribute("aria-label");
 			}
