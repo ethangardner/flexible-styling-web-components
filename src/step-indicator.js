@@ -30,9 +30,9 @@ class StepIndicator extends HTMLElement {
 			<style>
 				:host {
 					display: block;
-					--_border-color-todo: var(--step-indicator-color-todo, hsl(0 0 44%));
-					--_border-color-active: var(--step-indicator-color-active, hsl(0 0 22%));
-					--_border-color-completed: var(--step-indicator-color-completed, hsl(0 0 0));
+					--_border-color-default: var(--step-indicator-border-color-default, hsl(0 0 44%));
+					--_border-color-active: var(--step-indicator-border-color-active, hsl(0 0 22%));
+					--_border-color-completed: var(--step-indicator-border-color-completed, hsl(0 0 0));
 					--_border-width: var(--step-indicator-item-border-width, 5px);
 					--_gap: var(--step-indicator-gap, 0.5rem);
 					--_padding-block: var(--step-indicator-item-padding-block, 1rem);
@@ -40,9 +40,9 @@ class StepIndicator extends HTMLElement {
 
 				@media (prefers-color-scheme: dark) {
 					:host {
-						--_border-color-todo: var(--step-indicator-color-todo, hsl(0 0 100%));
-						--_border-color-active: var(--step-indicator-color-active, hsl(0 0 75%));
-						--_border-color-completed: var(--step-indicator-color-completed, hsl(0 0 50%));
+						--_border-color-default: var(--step-indicator-border-color-default, hsl(0 0 100%));
+						--_border-color-active: var(--step-indicator-border-color-active, hsl(0 0 75%));
+						--_border-color-completed: var(--step-indicator-border-color-completed, hsl(0 0 50%));
 					}
 				}
 
@@ -55,7 +55,7 @@ class StepIndicator extends HTMLElement {
 				}
 
 				::slotted(li) {
-					border-block-start: var(--_border-width) solid var(--_border-color-todo);
+					border-block-start: var(--_border-width) solid var(--_border-color-default);
 					flex: 1 0 0;
 					padding-block: var(--_padding-block);
 				}
