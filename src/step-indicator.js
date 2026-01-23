@@ -1,11 +1,21 @@
 /**
- * A step indicator component for displaying progress through a series of steps.
+ * @summary A step indicator component for displaying progress through a sequence of steps.
  *
  * @tag step-indicator
  * @slot - The steps to display.
  * @attribute {number} step - The current step number.
  * @csspart container - The container element.
  * @csspart steps - The list of steps.
+ * @cssprop --step-indicator-border-color-default - The default border color for steps.
+ * @cssprop --step-indicator-border-color-active - The border color for the active step.
+ * @cssprop --step-indicator-border-color-completed - The border color for the completed steps.
+ * @cssprop --step-indicator-color-default - The default text color for steps.
+ * @cssprop --step-indicator-color-active - The text color for the active step.
+ * @cssprop --step-indicator-color-completed - The text color for the completed steps.
+ * @cssprop --step-indicator-font-weight-active - The font weight for the active step.
+ * @cssprop --step-indicator-gap - The gap between individual steps.
+ * @cssprop --step-indicator-item-border-width - The border width for steps indicator segments.
+ * @cssprop --step-indicator-item-padding-block - The internal block padding between the step text and the border.
  */
 class StepIndicator extends HTMLElement {
 	static observedAttributes = ["step"];
@@ -30,19 +40,23 @@ class StepIndicator extends HTMLElement {
 			<style>
 				:host {
 					display: block;
-					--_border-color-default: var(--step-indicator-border-color-default, hsl(0 0 44%));
-					--_border-color-active: var(--step-indicator-border-color-active, hsl(0 0 22%));
-					--_border-color-completed: var(--step-indicator-border-color-completed, hsl(0 0 0));
+					--_border-color-default: var(--_color-default);
+					--_border-color-active: var(--_color-active);
+					--_border-color-completed: var(--_color-completed);
 					--_border-width: var(--step-indicator-item-border-width, 5px);
+					--_color-default: var(--step-indicator-color-default, hsl(0 0 0));
+					--_color-active: var(--step-indicator-color-active, hsl(0 0 30%));
+					--_color-completed: var(--step-indicator-color-completed, hsl(0 0 0));
+					--_font-weight-active: var(--step-indicator-font-weight-active, 700);
 					--_gap: var(--step-indicator-gap, 0.5rem);
 					--_padding-block: var(--step-indicator-item-padding-block, 1rem);
 				}
 
 				@media (prefers-color-scheme: dark) {
 					:host {
-						--_border-color-default: var(--step-indicator-border-color-default, hsl(0 0 100%));
-						--_border-color-active: var(--step-indicator-border-color-active, hsl(0 0 75%));
-						--_border-color-completed: var(--step-indicator-border-color-completed, hsl(0 0 50%));
+						--_color-default: var(--step-indicator-color-default, hsl(0 0 70%));
+						--_color-active: var(--step-indicator-color-active, hsl(0 0 100%));
+						--_color-completed: var(--step-indicator-color-completed, hsl(0 0 70%));
 					}
 				}
 
@@ -56,16 +70,20 @@ class StepIndicator extends HTMLElement {
 
 				::slotted(li) {
 					border-block-start: var(--_border-width) solid var(--_border-color-default);
+					color: var(--_color-default);
 					flex: 1 0 0;
 					padding-block: var(--_padding-block);
 				}
 
 				::slotted(li.active) {
 					border-block-start-color: var(--_border-color-active);
+					color: var(--_color-active);
+					font-weight: var(--_font-weight-active);
 				}
 
 				::slotted(li.completed) {
 					border-block-start-color: var(--_border-color-completed);
+					color: var(--_color-completed);
 				}
 			</style>
 			<div part="container">
@@ -106,7 +124,6 @@ class StepIndicator extends HTMLElement {
 
 		slottedElements.forEach((element, index) => {
 			const stepNumber = index + 1;
-			const originalLabel = element.textContent.trim();
 
 			element.classList.remove("active");
 			element.removeAttribute("aria-current");
@@ -114,11 +131,13 @@ class StepIndicator extends HTMLElement {
 			if (stepNumber === step) {
 				element.classList.add("active");
 				element.setAttribute("aria-current", "true");
+				element.classList.remove("completed");
+				element.removeAttribute("aria-label");
 			} else if (stepNumber < step) {
 				element.classList.remove("active");
 				element.removeAttribute("aria-current");
 				element.classList.add("completed");
-				element.setAttribute("aria-label", `${originalLabel} (completed)`);
+				element.setAttribute("aria-label", "completed");
 			} else {
 				element.classList.remove("active");
 				element.removeAttribute("aria-current");
