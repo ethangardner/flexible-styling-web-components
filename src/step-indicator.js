@@ -63,29 +63,45 @@ class StepIndicator extends HTMLElement {
 
 				ol {
 					display: flex;
+					gap: var(--_gap);
 					list-style: none;
 					margin-inline-start: 0;
 					padding-inline-start: 0;
-					gap: var(--_gap);
 				}
 
 				::slotted(li) {
-					border-block-start: var(--_border-width) solid var(--_border-color-default);
 					color: var(--_color-default);
 					flex: 1 0 0;
 					padding-block: var(--_padding-block);
 					padding-inline: var(--_padding-inline);
+					position: relative;
+				}
+
+				::slotted(li)::after {
+					background: var(--_border-color-default);
+					content: "";
+					position: absolute;
+					height: var(--_border-width);
+					top: 0;
+					left: 0;
+					width: 100%;
 				}
 
 				::slotted(li.active) {
-					border-block-start-color: var(--_border-color-active);
 					color: var(--_color-active);
 					font-weight: var(--_font-weight-active);
 				}
 
+				::slotted(li.active)::after {
+					background: var(--_border-color-active);
+				}
+
 				::slotted(li.completed) {
-					border-block-start-color: var(--_border-color-completed);
 					color: var(--_color-completed);
+				}
+
+				::slotted(li.completed)::after {
+					background: var(--_border-color-completed);
 				}
 			</style>
 			<div part="container">
