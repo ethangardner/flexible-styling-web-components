@@ -36,7 +36,7 @@ export default class BaseComponent extends HTMLElement {
 	 */
 	recordPerformanceMark(markName, { detail = {} } = {}) {
 		performance.mark(markName, {
-			detail: this.createDevtoolsDetail("marker", detail),
+			detail: this.createDevtoolsDetail("track-entry", detail),
 		});
 	}
 
@@ -55,7 +55,7 @@ export default class BaseComponent extends HTMLElement {
 		performance.measure(measureName, {
 			start: startMark,
 			end: endMark,
-			detail: this.createDevtoolsDetail("measure", detail),
+			detail: this.createDevtoolsDetail("track-entry", detail),
 		});
 	}
 }
