@@ -15,9 +15,10 @@
  * @cssprop --step-indicator-font-weight-active - The font weight for the active step.
  * @cssprop --step-indicator-gap - The gap between individual steps.
  * @cssprop --step-indicator-item-border-size - The border width for steps indicator segments.
+ * @cssprop --step-indicator-item-marker-color - The color of the marker for the active step.
+ * @cssprop --step-indicator-item-marker-size - The size of the marker for the active step.
  * @cssprop --step-indicator-item-padding-block - The internal block padding between the step text and the border.
  * @cssprop --step-indicator-item-padding-inline - The internal inline padding between the step text and the border.
- * @cssprop --step-indicator-item-marker-size - The size of the marker for the active step.
  */
 class StepIndicator extends HTMLElement {
 	static observedAttributes = ["step"];
@@ -51,6 +52,7 @@ class StepIndicator extends HTMLElement {
 					--_color-default: var(--step-indicator-color-default, hsl(0 0 0));
 					--_font-weight-active: var(--step-indicator-font-weight-active, 700);
 					--_gap: var(--step-indicator-gap, 0.25rem);
+					--_marker-color: var(--step-indicator-item-marker-color, var(--_border-color-active));
 					--_marker-size: var(--step-indicator-item-marker-size, var(--_border-size));
 					--_padding-inline: var(--step-indicator-item-padding-inline, 1rem);
 					--_padding-block: var(--step-indicator-item-padding-block, .25rem);
