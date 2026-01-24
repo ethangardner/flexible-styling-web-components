@@ -40,15 +40,16 @@ class StepIndicator extends HTMLElement {
 			<style>
 				:host {
 					display: block;
-					--_border-color-default: var(--_color-default);
-					--_border-color-active: var(--_color-active);
-					--_border-color-completed: var(--_color-completed);
+					--_border-color-default: var(--step-indicator-border-color-default, var(--_color-default));
+					--_border-color-active: var(--step-indicator-border-color-active, var(--_color-active));
+					--_border-color-completed: var(--step-indicator-border-color-completed, var(--_color-completed));
 					--_border-width: var(--step-indicator-item-border-width, 5px);
 					--_color-default: var(--step-indicator-color-default, hsl(0 0 0));
 					--_color-active: var(--step-indicator-color-active, hsl(0 0 30%));
 					--_color-completed: var(--step-indicator-color-completed, hsl(0 0 0));
 					--_font-weight-active: var(--step-indicator-font-weight-active, 700);
 					--_gap: var(--step-indicator-gap, 0.5rem);
+					--_padding-inline: var(--step-indicator-item-padding-inline, 0);
 					--_padding-block: var(--step-indicator-item-padding-block, 1rem);
 				}
 
@@ -73,6 +74,7 @@ class StepIndicator extends HTMLElement {
 					color: var(--_color-default);
 					flex: 1 0 0;
 					padding-block: var(--_padding-block);
+					padding-inline: var(--_padding-inline);
 				}
 
 				::slotted(li.active) {

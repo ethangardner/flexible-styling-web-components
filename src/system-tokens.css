@@ -5,6 +5,27 @@
 	 * used throughout your design system to ensure consistency
 	 * across all components and pages.
 	 */
+	--system-color-neutral-10: oklch(1 0 0);
+	--system-color-neutral-20: oklch(0.95 0 0);
+	--system-color-neutral-30: oklch(0.9 0 0);
+	--system-color-neutral-40: oklch(0.85 0 0);
+	--system-color-neutral-50: oklch(0.8 0 0);
+	--system-color-neutral-60: oklch(0.75 0 0);
+	--system-color-neutral-70: oklch(0.7 0 0);
+	--system-color-neutral-80: oklch(0.65 0 0);
+	--system-color-neutral-90: oklch(0.6 0 0);
+	--system-color-neutral-100: oklch(0.55 0 0);
+	--system-color-neutral-110: oklch(0.5 0 0);
+	--system-color-neutral-120: oklch(0.45 0 0);
+	--system-color-neutral-130: oklch(0.4 0 0);
+	--system-color-neutral-140: oklch(0.35 0 0);
+	--system-color-neutral-150: oklch(0.3 0 0);
+	--system-color-neutral-160: oklch(0.25 0 0);
+	--system-color-neutral-170: oklch(0.2 0 0);
+	--system-color-neutral-180: oklch(0.15 0 0);
+	--system-color-neutral-190: oklch(0.1 0 0);
+	--system-color-neutral-200: oklch(0.05 0 0);
+	--system-color-neutral-210: oklch(0 0 0);
 	--system-color-cool-10: oklch(0.95 0.025 277);
 	--system-color-cool-20: oklch(0.9 0.05 277);
 	--system-color-cool-30: oklch(0.85 0.075 277);

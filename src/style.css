@@ -45,3 +45,19 @@ ol,
 p {
 	margin-block-start: 0;
 }
+
+:root {
+	--step-indicator-color-default: var(--system-color-cool-110);
+	--step-indicator-color-active: var(--system-color-neutral-190);
+	--step-indicator-color-completed: var(--system-color-warm-110);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--step-indicator-color-default: var(--system-color-cool-40);
+		--step-indicator-color-active: var(--system-color-cool-10);
+		--step-indicator-color-completed: var(--system-color-warm-30);
+		--step-indicator-border-color-completed: var(--system-color-warm-70);
+		--step-indicator-border-color-default: var(--system-color-cool-70);
+	}
+}
