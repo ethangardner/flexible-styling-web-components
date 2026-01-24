@@ -50,6 +50,7 @@ p {
 	--step-indicator-color-default: var(--system-color-cool-110);
 	--step-indicator-color-active: var(--system-color-neutral-190);
 	--step-indicator-color-completed: var(--system-color-warm-110);
+	--step-indicator-item-marker-size: 7px;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -6,16 +6,18 @@
  * @attribute {number} step - The current step number.
  * @csspart container - The container element.
  * @csspart steps - The list of steps.
- * @cssprop --step-indicator-border-color-default - The default border color for steps.
  * @cssprop --step-indicator-border-color-active - The border color for the active step.
  * @cssprop --step-indicator-border-color-completed - The border color for the completed steps.
- * @cssprop --step-indicator-color-default - The default text color for steps.
+ * @cssprop --step-indicator-border-color-default - The default border color for steps.
  * @cssprop --step-indicator-color-active - The text color for the active step.
  * @cssprop --step-indicator-color-completed - The text color for the completed steps.
+ * @cssprop --step-indicator-color-default - The default text color for steps.
  * @cssprop --step-indicator-font-weight-active - The font weight for the active step.
  * @cssprop --step-indicator-gap - The gap between individual steps.
- * @cssprop --step-indicator-item-border-width - The border width for steps indicator segments.
+ * @cssprop --step-indicator-item-border-size - The border width for steps indicator segments.
  * @cssprop --step-indicator-item-padding-block - The internal block padding between the step text and the border.
+ * @cssprop --step-indicator-item-padding-inline - The internal inline padding between the step text and the border.
+ * @cssprop --step-indicator-item-marker-size - The size of the marker for the active step.
  */
 class StepIndicator extends HTMLElement {
 	static observedAttributes = ["step"];
@@ -43,26 +45,28 @@ class StepIndicator extends HTMLElement {
 					--_border-color-default: var(--step-indicator-border-color-default, var(--_color-default));
 					--_border-color-active: var(--step-indicator-border-color-active, var(--_color-active));
 					--_border-color-completed: var(--step-indicator-border-color-completed, var(--_color-completed));
-					--_border-width: var(--step-indicator-item-border-width, 5px);
-					--_color-default: var(--step-indicator-color-default, hsl(0 0 0));
+					--_border-size: var(--step-indicator-item-border-size, 5px);
 					--_color-active: var(--step-indicator-color-active, hsl(0 0 30%));
 					--_color-completed: var(--step-indicator-color-completed, hsl(0 0 0));
+					--_color-default: var(--step-indicator-color-default, hsl(0 0 0));
 					--_font-weight-active: var(--step-indicator-font-weight-active, 700);
-					--_gap: var(--step-indicator-gap, 0.5rem);
-					--_padding-inline: var(--step-indicator-item-padding-inline, 0);
-					--_padding-block: var(--step-indicator-item-padding-block, 1rem);
+					--_gap: var(--step-indicator-gap, 0.25rem);
+					--_marker-size: var(--step-indicator-item-marker-size, var(--_border-size));
+					--_padding-inline: var(--step-indicator-item-padding-inline, 1rem);
+					--_padding-block: var(--step-indicator-item-padding-block, .25rem);
 				}
 
 				@media (prefers-color-scheme: dark) {
 					:host {
-						--_color-default: var(--step-indicator-color-default, hsl(0 0 70%));
 						--_color-active: var(--step-indicator-color-active, hsl(0 0 100%));
 						--_color-completed: var(--step-indicator-color-completed, hsl(0 0 70%));
+						--_color-default: var(--step-indicator-color-default, hsl(0 0 70%));
 					}
 				}
 
 				ol {
 					display: flex;
+					flex-direction: column;
 					gap: var(--_gap);
 					list-style: none;
 					margin-inline-start: 0;
@@ -81,10 +85,10 @@ class StepIndicator extends HTMLElement {
 					background: var(--_border-color-default);
 					content: "";
 					position: absolute;
-					height: var(--_border-width);
 					top: 0;
 					left: 0;
-					width: 100%;
+					height: 100%;
+					width: var(--_border-size);
 				}
 
 				::slotted(li.active) {
@@ -94,6 +98,18 @@ class StepIndicator extends HTMLElement {
 
 				::slotted(li.active)::after {
 					background: var(--_border-color-active);
+				}
+
+				::slotted(li.active)::before {
+  				border-block: var(--_marker-size) solid transparent;
+  				border-inline-start: var(--_marker-size) solid var(--_border-color-active);
+					content: "";
+					position: absolute;
+					top: 50%;
+					left: var(--_border-size);
+					transform: translateY(-50%);
+					height: 0;
+					width: 0;
 				}
 
 				::slotted(li.completed) {
