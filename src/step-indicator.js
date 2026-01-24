@@ -1,3 +1,5 @@
+import BaseComponent from "./base-component.js";
+
 /**
  * @summary A step indicator component for displaying progress through a sequence of steps.
  *
@@ -20,7 +22,7 @@
  * @cssprop --step-indicator-item-padding-block - The internal block padding between the step text and the border.
  * @cssprop --step-indicator-item-padding-inline - The internal inline padding between the step text and the border.
  */
-class StepIndicator extends HTMLElement {
+class StepIndicator extends BaseComponent {
 	static observedAttributes = ["step"];
 
 	constructor() {
@@ -29,6 +31,7 @@ class StepIndicator extends HTMLElement {
 	}
 
 	connectedCallback() {
+		this.recordPerformanceMark("step-indicator:connectedCallback:start");
 		const shadowRoot = this.attachShadow({ mode: "open" });
 		this.render(shadowRoot);
 
@@ -36,9 +39,12 @@ class StepIndicator extends HTMLElement {
 		slot.addEventListener("slotchange", this.handleSlotChange);
 
 		this.updateStepClasses();
+		this.recordPerformanceMark("step-indicator:connectedCallback:end");
 	}
 
 	render(shadowRoot) {
+		this.recordPerformanceMark("step-indicator:render:start");
+
 		shadowRoot.innerHTML = `
 			<style>
 				:host {
@@ -128,6 +134,12 @@ class StepIndicator extends HTMLElement {
 				</ol>
 			</div>
 		`;
+
+		this.recordPerformanceMark("step-indicator:render:end");
+		this.recordPerformanceMeasure("step-indicator:render", {
+			startMark: "step-indicator:render:start",
+			endMark: "step-indicator:render:end",
+		});
 	}
 
 	handleSlotChange() {
@@ -155,6 +167,8 @@ class StepIndicator extends HTMLElement {
 
 		if (isNaN(step)) return;
 
+		this.recordPerformanceMark("step-indicator:update-step-classes:start");
+
 		const slot = this.shadowRoot.querySelector("slot:not([name])");
 		const slottedElements = slot.assignedElements();
 
@@ -181,6 +195,8 @@ class StepIndicator extends HTMLElement {
 				element.removeAttribute("aria-label");
 			}
 		});
+
+		this.recordPerformanceMark("step-indicator:update-step-classes:end");
 	}
 }
 
