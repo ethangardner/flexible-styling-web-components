@@ -8,44 +8,46 @@
 	 * the CSS custom properties defined in system-tokens.css that are easier to
 	 * reference in your application's CSS.
 	 */
-	--theme-font-family-sans: var(--system-font-family-humanist);
-	--theme-font-size-md: var(--system-size-20);
-	--theme-font-size-mdlg: var(--system-size-28);
-	--theme-spacing-md: var(--system-size-20);
-	--theme-spacing-mdlg: var(--system-size-24);
-	--theme-spacing-lg: var(--system-size-32);
+	--eg-theme-font-family-sans: var(--eg-system-font-family-humanist);
+	--eg-theme-font-size-md: var(--eg-system-size-20);
+	--eg-theme-font-size-mdlg: var(--eg-system-size-28);
+	--eg-theme-spacing-md: var(--eg-system-size-20);
+	--eg-theme-spacing-mdlg: var(--eg-system-size-24);
+	--eg-theme-spacing-lg: var(--eg-system-size-32);
 
 	/* Light theme */
-	--theme-body-background: var(--system-color-cool-10);
-	--theme-body-color: var(--system-color-cool-210);
+	--eg-theme-body-background: var(--eg-system-color-cool-10);
+	--eg-theme-body-color: var(--eg-system-color-cool-210);
 
 	/* Step indicator component-specific styles */
-	--step-indicator-color-default: var(--system-color-cool-110);
-	--step-indicator-color-active: var(--system-color-neutral-190);
-	--step-indicator-color-completed: var(--system-color-warm-110);
-	--step-indicator-item-marker-size: 7px;
+	--eg-c-step-indicator-color-default: var(--eg-system-color-cool-110);
+	--eg-c-step-indicator-color-active: var(--eg-system-color-neutral-190);
+	--eg-c-step-indicator-color-completed: var(--eg-system-color-warm-110);
+	--eg-c-step-indicator-item-marker-size: 7px;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--theme-body-background: var(--system-color-cool-210);
-		--theme-body-color: var(--system-color-cool-10);
+		--eg-theme-body-background: var(--eg-system-color-cool-210);
+		--eg-theme-body-color: var(--eg-system-color-cool-10);
 
 		/* Step indicator component-specific styles */
-		--step-indicator-color-default: var(--system-color-cool-40);
-		--step-indicator-color-active: var(--system-color-cool-10);
-		--step-indicator-color-completed: var(--system-color-warm-30);
-		--step-indicator-border-color-completed: var(--system-color-warm-70);
-		--step-indicator-border-color-default: var(--system-color-cool-70);
+		--eg-c-step-indicator-color-default: var(--eg-system-color-cool-40);
+		--eg-c-step-indicator-color-active: var(--eg-system-color-cool-10);
+		--eg-c-step-indicator-color-completed: var(--eg-system-color-warm-30);
+		--eg-c-step-indicator-border-color-completed: var(
+			--eg-system-color-warm-70
+		);
+		--eg-c-step-indicator-border-color-default: var(--eg-system-color-cool-70);
 	}
 }
 
 body {
-	background: var(--theme-body-background);
-	color: var(--theme-body-color);
-	font-family: var(--theme-font-family-sans);
-	font-size: var(--theme-font-size-md);
-	margin: var(--theme-spacing-lg);
+	background: var(--eg-theme-body-background);
+	color: var(--eg-theme-body-color);
+	font-family: var(--eg-theme-font-family-sans);
+	font-size: var(--eg-theme-font-size-md);
+	margin: var(--eg-theme-spacing-lg);
 }
 
 h1,

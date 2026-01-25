@@ -1,12 +1,12 @@
 /**
- * @class BaseComponent
+ * @class EGBaseComponent
  * I like to have a base class for components in a design system that other
  * components can extend from. This allows me to setup common functionality
  * that all components should have. Here, I'm using the example of recording
  * performance marks and measures and extending it with the extensibility API to give it a
  * custom track as described here: https://developer.chrome.com/docs/devtools/performance/extension
  */
-export default class BaseComponent extends HTMLElement {
+export default class EGBaseComponent extends HTMLElement {
 	constructor() {
 		super();
 	}

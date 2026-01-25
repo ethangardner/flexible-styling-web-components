@@ -1,4 +1,4 @@
-import BaseComponent from "./base-component.js";
+import EGBaseComponent from "./base-component.js";
 
 /**
  * @summary A step indicator component for displaying progress through a sequence of steps.
@@ -8,21 +8,21 @@ import BaseComponent from "./base-component.js";
  * @attribute {number} step - The current step number.
  * @csspart container - The container element.
  * @csspart steps - The list of steps.
- * @cssprop --step-indicator-border-color-active - The border color for the active step.
- * @cssprop --step-indicator-border-color-completed - The border color for the completed steps.
- * @cssprop --step-indicator-border-color-default - The default border color for steps.
- * @cssprop --step-indicator-color-active - The text color for the active step.
- * @cssprop --step-indicator-color-completed - The text color for the completed steps.
- * @cssprop --step-indicator-color-default - The default text color for steps.
- * @cssprop --step-indicator-font-weight-active - The font weight for the active step.
- * @cssprop --step-indicator-gap - The gap between individual steps.
- * @cssprop --step-indicator-item-border-size - The border width for steps indicator segments.
- * @cssprop --step-indicator-item-marker-color - The color of the marker for the active step.
- * @cssprop --step-indicator-item-marker-size - The size of the marker for the active step.
- * @cssprop --step-indicator-item-padding-block - The internal block padding between the step text and the border.
- * @cssprop --step-indicator-item-padding-inline - The internal inline padding between the step text and the border.
+ * @cssprop --eg-c-step-indicator-border-color-active - The border color for the active step.
+ * @cssprop --eg-c-step-indicator-border-color-completed - The border color for the completed steps.
+ * @cssprop --eg-c-step-indicator-border-color-default - The default border color for steps.
+ * @cssprop --eg-c-step-indicator-color-active - The text color for the active step.
+ * @cssprop --eg-c-step-indicator-color-completed - The text color for the completed steps.
+ * @cssprop --eg-c-step-indicator-color-default - The default text color for steps.
+ * @cssprop --eg-c-step-indicator-font-weight-active - The font weight for the active step.
+ * @cssprop --eg-c-step-indicator-gap - The gap between individual steps.
+ * @cssprop --eg-c-step-indicator-item-border-size - The border width for steps indicator segments.
+ * @cssprop --eg-c-step-indicator-item-marker-color - The color of the marker for the active step.
+ * @cssprop --eg-c-step-indicator-item-marker-size - The size of the marker for the active step.
+ * @cssprop --eg-c-step-indicator-item-padding-block - The internal block padding between the step text and the border.
+ * @cssprop --eg-c-step-indicator-item-padding-inline - The internal inline padding between the step text and the border.
  */
-class StepIndicator extends BaseComponent {
+class EGStepIndicator extends EGBaseComponent {
 	static observedAttributes = ["step"];
 
 	constructor() {
@@ -49,26 +49,26 @@ class StepIndicator extends BaseComponent {
 			<style>
 				:host {
 					display: block;
-					--_border-color-default: var(--step-indicator-border-color-default, var(--_color-default));
-					--_border-color-active: var(--step-indicator-border-color-active, var(--_color-active));
-					--_border-color-completed: var(--step-indicator-border-color-completed, var(--_color-completed));
-					--_border-size: var(--step-indicator-item-border-size, 5px);
-					--_color-active: var(--step-indicator-color-active, hsl(0 0 30%));
-					--_color-completed: var(--step-indicator-color-completed, hsl(0 0 0));
-					--_color-default: var(--step-indicator-color-default, hsl(0 0 0));
-					--_font-weight-active: var(--step-indicator-font-weight-active, 700);
-					--_gap: var(--step-indicator-gap, 0.25rem);
-					--_marker-color: var(--step-indicator-item-marker-color, var(--_border-color-active));
-					--_marker-size: var(--step-indicator-item-marker-size, var(--_border-size));
-					--_padding-inline: var(--step-indicator-item-padding-inline, 1rem);
-					--_padding-block: var(--step-indicator-item-padding-block, .25rem);
+					--_border-color-default: var(--eg-c-step-indicator-border-color-default, var(--_color-default));
+					--_border-color-active: var(--eg-c-step-indicator-border-color-active, var(--_color-active));
+					--_border-color-completed: var(--eg-c-step-indicator-border-color-completed, var(--_color-completed));
+					--_border-size: var(--eg-c-step-indicator-item-border-size, 5px);
+					--_color-active: var(--eg-c-step-indicator-color-active, hsl(0 0 30%));
+					--_color-completed: var(--eg-c-step-indicator-color-completed, hsl(0 0 0));
+					--_color-default: var(--eg-c-step-indicator-color-default, hsl(0 0 0));
+					--_font-weight-active: var(--eg-c-step-indicator-font-weight-active, 700);
+					--_gap: var(--eg-c-step-indicator-gap, 0.25rem);
+					--_marker-color: var(--eg-c-step-indicator-item-marker-color, var(--_border-color-active));
+					--_marker-size: var(--eg-c-step-indicator-item-marker-size, var(--_border-size));
+					--_padding-inline: var(--eg-c-step-indicator-item-padding-inline, 1rem);
+					--_padding-block: var(--eg-c-step-indicator-item-padding-block, .25rem);
 				}
 
 				@media (prefers-color-scheme: dark) {
 					:host {
-						--_color-active: var(--step-indicator-color-active, hsl(0 0 100%));
-						--_color-completed: var(--step-indicator-color-completed, hsl(0 0 70%));
-						--_color-default: var(--step-indicator-color-default, hsl(0 0 70%));
+						--_color-active: var(--eg-c-step-indicator-color-active, hsl(0 0 100%));
+						--_color-completed: var(--eg-c-step-indicator-color-completed, hsl(0 0 70%));
+						--_color-default: var(--eg-c-step-indicator-color-default, hsl(0 0 70%));
 					}
 				}
 
@@ -200,4 +200,4 @@ class StepIndicator extends BaseComponent {
 	}
 }
 
-customElements.define("step-indicator", StepIndicator);
+customElements.define("eg-step-indicator", EGStepIndicator);
