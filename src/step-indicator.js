@@ -49,9 +49,9 @@ class EGStepIndicator extends EGBaseComponent {
 			<style>
 				:host {
 					display: block;
-					--_border-color-default: var(--eg-c-step-indicator-border-color-default, var(--_color-default));
 					--_border-color-active: var(--eg-c-step-indicator-border-color-active, var(--_color-active));
 					--_border-color-completed: var(--eg-c-step-indicator-border-color-completed, var(--_color-completed));
+					--_border-color-default: var(--eg-c-step-indicator-border-color-default, var(--_color-default));
 					--_border-size: var(--eg-c-step-indicator-item-border-size, 5px);
 					--_color-active: var(--eg-c-step-indicator-color-active, hsl(0 0 30%));
 					--_color-completed: var(--eg-c-step-indicator-color-completed, hsl(0 0 0));
